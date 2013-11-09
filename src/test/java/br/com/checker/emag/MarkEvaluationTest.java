@@ -1,7 +1,7 @@
 package br.com.checker.emag;
 
-import static br.com.checker.emag.Checker.from;
-import static br.com.checker.emag.Checker.marking;
+import static br.com.checker.emag.core.Checker.from;
+import static br.com.checker.emag.core.Checker.marking;
 import static org.junit.Assert.*;
 
 
