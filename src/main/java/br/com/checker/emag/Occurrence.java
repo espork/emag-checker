@@ -11,21 +11,26 @@ public @Getter class Occurrence {
 	private String code;
 	private boolean error;
 	private String tag;
+	private OccurrenceClassification type;
 	
 	public Occurrence(int line, int column, String code, boolean error,
-			String tag) {
+			String tag,
+			OccurrenceClassification type) {
 		this.line = line;
 		this.column = column;
 		this.code = code;
 		this.error = error;
 		this.tag = tag;
+		this.type = type;
 	}
 	
 	public Occurrence(String code, boolean error,
-			String tag) {
+			String tag,
+			OccurrenceClassification type) {
 		this.code = code;
 		this.error = error;
 		this.tag = tag;
+		this.type = type;
 	}
 	
 	
