@@ -3,6 +3,8 @@ package br.com.checker.emag.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.htmlparser.jericho.Attribute;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
@@ -135,11 +137,8 @@ public class ContentEvaluation extends Evaluation{
 		List<Occurrence> occurrences = new ArrayList<Occurrence>();
 		for (Element img : getDocument().getAllElements("img")) {
 			Attribute alt = img.getAttributes().get("alt");
-			if (alt == null) {
+			if (alt == null || StringUtils.isEmpty(alt.getValue()))
 				occurrences.add(buildOccurrence("20", true, img.toString(), img));
-			} else if (alt.getValue().equals("")) {
-				occurrences.add(new Occurrence("20", true, img.toString(), OccurrenceClassification.CONTENT_INFORMATION));
-			}
 		}
 		
 		return occurrences;
