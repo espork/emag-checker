@@ -4,12 +4,12 @@ import lombok.Getter;
 
 public enum OccurrenceClassification {
 
-	MARK("2.1","Marcação"),
-	BEHAVIOR("2.2","Comportamento (DOM)"),
-	CONTENT_INFORMATION("2.3","Conteúdo / Informação"),
-	PRESENTATION_DESIGN("2.4","Apresentação / Design"),
-	MULTIMEDIA("2.5","Multimídia"),
-	FORM("2.6","Formulários");
+	MARK("2.1","Marca√ß√£o"),
+	BEHAVIOR("2.2","Comportamento"),
+	CONTENT_INFORMATION("2.3","Conte√∫do/Informa√ß√£o"),
+	PRESENTATION_DESIGN("2.4","Apresenta√ß√£o / Design"),
+	MULTIMEDIA("2.5","Multim√≠dia"),
+	FORM("2.6","Formul√°rios");
 	
 	OccurrenceClassification(String code,String description) {
 		this.code = code;
