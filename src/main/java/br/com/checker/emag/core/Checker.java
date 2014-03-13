@@ -3,7 +3,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,22 +21,16 @@ import br.com.checker.emag.core.FormEvaluation.FormEvaluationBuilder;
 import br.com.checker.emag.core.MarkEvaluation.MarkEvaluationBuilder;
 import br.com.checker.emag.core.MultimediaEvaluation.MultimediaEvaluationBuilder;
 import br.com.checker.emag.core.PresentationEvaluation.PresentationEvaluationBuilder;
-import br.com.checker.emag.xml.AvaliationReport;
-import br.com.checker.emag.xml.CheckPoint;
-import br.com.checker.emag.xml.Result;
-
-import com.thoughtworks.xstream.XStream;
 
 
 
 public class Checker {
 	
-	private String html;
 	private Source document;
 	private Map<OccurrenceClassification,List<Occurrence>> occurrencesMap = new HashMap<OccurrenceClassification, List<Occurrence>>();;
 	
 	private Checker(String html) { 
-		this.html = html;
+		
 		this.document = new Source(html);
 		this.document.fullSequentialParse();
 	}
@@ -104,64 +97,6 @@ public class Checker {
 		}
 		Collections.sort(list);
 		return list;
-	}
-	
-	public String checkReport(String url) {
-		
-		List<SummarizedOccurrence> result = this.checkSumarized();
-		Map<OccurrenceClassification,List<SummarizedOccurrence>> occurrencesList = new HashMap<OccurrenceClassification, List<SummarizedOccurrence>>();
-		
-		AvaliationReport report = new AvaliationReport();
-		
-		for(SummarizedOccurrence occurrence : result){
-			if(occurrencesList.get(occurrence.getType()) == null)
-				occurrencesList.put(occurrence.getType(), new ArrayList<SummarizedOccurrence>());
-			
-			occurrencesList.get(occurrence.getType()).add(occurrence);
-		}
-		
-		
-		for(Entry<OccurrenceClassification, List<SummarizedOccurrence>> entry : occurrencesList.entrySet()){
-			
-			int errors = 0;
-			int warnings = 0;
-			
-			for(SummarizedOccurrence ocorrencia : entry.getValue()){
-				if(ocorrencia.isError())
-					errors++ ;
-				else
-					warnings++;
-			}
-			CheckPoint checkPoint = new CheckPoint();
-			checkPoint.setDescription(entry.getKey().getCode());
-			checkPoint.setTotalErrors(errors);
-			checkPoint.setTotalWarnings(warnings);
-			
-			report.getResult().addCheckPoint(checkPoint);
-				
-		}
-		
-		report.getResult().setHtml(this.html);
-		report.getResult().setDate(new Date());
-		report.getResult().setUrl(url);
-		
-		XStream xstream = new XStream();
-		xstream.alias("relatorio_de_avaliacao", AvaliationReport.class);
-		xstream.alias("resultados", Result.class);
-		xstream.alias("diretriz", CheckPoint.class);
-		
-		xstream.aliasField("resultados", AvaliationReport.class, "result");
-		
-		xstream.aliasField("data", Result.class, "date");
-		xstream.aliasField("codigo_fonte_avaliado", Result.class, "html");
-		xstream.addImplicitCollection(Result.class, "checkPoints");
-		
-		
-		xstream.aliasField("descricao", CheckPoint.class, "description");
-		xstream.aliasField("total_erros", CheckPoint.class, "totalErrors");
-		xstream.aliasField("total_avisos",CheckPoint.class, "totalWarnings");
-		
-		return xstream.toXML(report);
 	}
 	
 	private Map<OccurrenceKey,List<Occurrence>> groupOccurrencesByCode(List<Occurrence> occurrences) {
