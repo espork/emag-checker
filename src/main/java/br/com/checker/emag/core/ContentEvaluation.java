@@ -22,11 +22,55 @@ public class ContentEvaluation extends Evaluation{
 		protected ContentEvaluation with(Source document) { return new ContentEvaluation(document); }
 		
 		public SpecificRecommendation recommendation16() { return new EvaluationRecommendation16();}
+		public SpecificRecommendation recommendation17() { return new EvaluationRecommendation17();}
+		public SpecificRecommendation recommendation18() { return new EvaluationRecommendation18();}
+		public SpecificRecommendation recommendation19() { return new EvaluationRecommendation19();}
+		public SpecificRecommendation recommendation20() { return new EvaluationRecommendation20();}
+		public SpecificRecommendation recommendation21() { return new EvaluationRecommendation21();}
+		public SpecificRecommendation recommendation22() { return new EvaluationRecommendation22();}
+		public SpecificRecommendation recommendation23() { return new EvaluationRecommendation23();}
+		public SpecificRecommendation recommendation24() { return new EvaluationRecommendation24();}
+		public SpecificRecommendation recommendation25() { return new EvaluationRecommendation25();}
+		public SpecificRecommendation recommendation26() { return new EvaluationRecommendation26();}
+		public SpecificRecommendation recommendation27() { return new EvaluationRecommendation27();}
 		
 	}
 	
 	protected static class EvaluationRecommendation16 extends ContentRecommendation{
 		protected List<Occurrence> check() { return getEvaluation().checkRecommendation16();}
+	}
+	protected static class EvaluationRecommendation17 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation17();}
+	}
+	protected static class EvaluationRecommendation18 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation18();}
+	}
+	protected static class EvaluationRecommendation19 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation19();}
+	}
+	protected static class EvaluationRecommendation20 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation20();}
+	}
+	protected static class EvaluationRecommendation21 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation21();}
+	}
+	protected static class EvaluationRecommendation22 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation22();}
+	}
+	protected static class EvaluationRecommendation23 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation23();}
+	}
+	protected static class EvaluationRecommendation24 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation24();}
+	}
+	protected static class EvaluationRecommendation25 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation25();}
+	}
+	protected static class EvaluationRecommendation26 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation26();}
+	}
+	protected static class EvaluationRecommendation27 extends ContentRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation27();}
 	}
 	
 	
@@ -76,7 +120,10 @@ public class ContentEvaluation extends Evaluation{
 		
 		Element head = getDocument().getFirstElement("head");
 		
-		if (head != null) {
+		if(head == null) {
+			occurrences.add(new Occurrence("17", true, getDocument().getFirstElement().toString(),OccurrenceClassification.CONTENT_INFORMATION));
+		}else {
+		
 			Element title = head.getFirstElement("title");
 			if (title == null) {
 				occurrences.add(buildOccurrence("17", true, head.toString(), head));
