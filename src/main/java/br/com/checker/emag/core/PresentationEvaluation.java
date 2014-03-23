@@ -8,11 +8,6 @@ import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
 import br.com.checker.emag.Occurrence;
 import br.com.checker.emag.OccurrenceClassification;
-import br.com.checker.emag.core.BehaviorEvaluation.EvaluationRecommendation11;
-import br.com.checker.emag.core.BehaviorEvaluation.EvaluationRecommendation12;
-import br.com.checker.emag.core.BehaviorEvaluation.EvaluationRecommendation13;
-import br.com.checker.emag.core.BehaviorEvaluation.EvaluationRecommendation14;
-import br.com.checker.emag.core.BehaviorEvaluation.EvaluationRecommendation15;
 import br.com.checker.emag.core.SpecificRecommendation.PresentationRecommendation;
 
 public class PresentationEvaluation extends Evaluation{
@@ -25,15 +20,27 @@ public class PresentationEvaluation extends Evaluation{
 		protected PresentationEvaluation with(Source document) { return new PresentationEvaluation(document); }
 		
 		public SpecificRecommendation recommendation28() { return new EvaluationRecommendation28();}
-		public SpecificRecommendation recommendation11() { return new EvaluationRecommendation11();}
-		public SpecificRecommendation recommendation12() { return new EvaluationRecommendation12();}
-		public SpecificRecommendation recommendation13() { return new EvaluationRecommendation13();}
-		public SpecificRecommendation recommendation14() { return new EvaluationRecommendation14();}
-		public SpecificRecommendation recommendation15() { return new EvaluationRecommendation15();}
+		public SpecificRecommendation recommendation29() { return new EvaluationRecommendation29();}
+		public SpecificRecommendation recommendation30() { return new EvaluationRecommendation30();}
+		public SpecificRecommendation recommendation31() { return new EvaluationRecommendation31();}
+		public SpecificRecommendation recommendation32() { return new EvaluationRecommendation32();}
 	}
 	
 	protected static class EvaluationRecommendation28 extends PresentationRecommendation{
 		protected List<Occurrence> check() { return getEvaluation().checkRecommendation28();}
+	}
+	protected static class EvaluationRecommendation29 extends PresentationRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation29();}
+	}
+	
+	protected static class EvaluationRecommendation30 extends PresentationRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation30();}
+	}
+	protected static class EvaluationRecommendation31 extends PresentationRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation31();}
+	}
+	protected static class EvaluationRecommendation32 extends PresentationRecommendation{
+		protected List<Occurrence> check() { return getEvaluation().checkRecommendation32();}
 	}
 	
 	public List<Occurrence> check() {
