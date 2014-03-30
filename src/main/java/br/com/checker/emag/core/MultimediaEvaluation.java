@@ -88,8 +88,8 @@ public class MultimediaEvaluation extends Evaluation{
 		
 		for (Element video : getDocument().getAllElements("object")) {
 			Attribute data = video.getAttributes().get("data");
-			if(data != null)
-			if(data.getValue().contains("mp3") || data.getValue().contains("wma") || data.getValue().contains("wav"))
+			
+			if(data != null && (data.getValue().contains("mp3") || data.getValue().contains("wma") || data.getValue().contains("wav")))
 				occurrences.add(this.buildOccurrence("34", false, video.toString(), video));
 		}
 		
@@ -118,7 +118,7 @@ public class MultimediaEvaluation extends Evaluation{
 		List<Occurrence> occurrences = new ArrayList<Occurrence>();
 		for (Element video : getDocument().getAllElements("object")) {
 			
-			if (video.toString().contains("flash")) 
+			if (video.toString().contains("swf")) 
 				occurrences.add(this.buildOccurrence("37", false, video.toString(), video));
 		}
 		return occurrences;
